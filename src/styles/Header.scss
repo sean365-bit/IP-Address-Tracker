@@ -41,6 +41,10 @@ form {
   position: relative;
 }
 
+.sr_only {
+  display: none;
+}
+
 input {
   width: 100%;
   height: 60px;
@@ -62,20 +66,22 @@ input::placeholder {
 
 button {
   background-color: $gray-950;
-
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-
   width: 80px;
   height: 100%;
   border: none;
   border-radius: 0px 8px 8px 0px;
-
-  background-color: $gray-950;
   color: white;
   cursor: pointer;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+button:hover {
+  background-color: lighten($gray-950, 10%);
 }
 
 @media only screen and (min-width: 768px) {

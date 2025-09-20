@@ -1,4 +1,5 @@
 import "../styles/Footer.scss";
+import Map from "./Map";
 
 const Footer = function () {
   return (
@@ -24,6 +25,8 @@ const Footer = function () {
           <p className="details_content">SpaceX Starlink</p>
         </div>
       </article>
+
+      <Map />
     </footer>
   );
 };
