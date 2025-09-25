@@ -1,32 +1,55 @@
 import "../styles/Footer.scss";
 import Map from "./Map";
 
-const Footer = function () {
+interface GeoData {
+  ip: string;
+  isp: string;
+  location: {
+    country: string;
+    region: string;
+    timezone: string;
+    lat: number;
+    lng: number;
+  };
+}
+
+interface FooterProps {
+  geoData: GeoData | null;
+}
+
+const Footer = ({ geoData }: FooterProps) => {
   return (
     <footer>
       <article className="details_container">
         <div className="details">
           <p className="details_tittle">IP Address</p>
-          <p className="details_content">192.212.174.101</p>
+          <p className="details_content">{geoData?.ip}</p>
         </div>
         <hr className="bar" />
+
         <div className="details">
           <p className="details_tittle">Location</p>
-          <p className="details_content">Brooklyn, NY 10001</p>
+          <p className="details_content">
+            {geoData
+              ? `${geoData.location.region}, ${geoData.location.country}`
+              : ""}
+          </p>
         </div>
         <hr className="bar" />
+
         <div className="details">
           <p className="details_tittle">Timezone</p>
-          <p className="details_content">UTC-05:00</p>
+          <p className="details_content">{geoData?.location.timezone}</p>
         </div>
         <hr className="bar" />
+
         <div className="details">
           <p className="details_tittle">ISP</p>
-          <p className="details_content">SpaceX Starlink</p>
+          <p className="details_content">{geoData?.isp}</p>
         </div>
       </article>
 
-      <Map />
+      <Map lat={geoData?.location.lat} lng={geoData?.location.lng} />
     </footer>
   );
 };
