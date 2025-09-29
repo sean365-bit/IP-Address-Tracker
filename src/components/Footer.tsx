@@ -5,6 +5,7 @@ interface GeoData {
   ip: string;
   isp: string;
   location: {
+    city: string;
     country: string;
     region: string;
     timezone: string;
@@ -31,7 +32,7 @@ const Footer = ({ geoData }: FooterProps) => {
           <p className="details_tittle">Location</p>
           <p className="details_content">
             {geoData
-              ? `${geoData.location.region}, ${geoData.location.country}`
+              ? `${geoData.location.city}, ${geoData.location.region} ${geoData.location.country}`
               : ""}
           </p>
         </div>
@@ -39,7 +40,9 @@ const Footer = ({ geoData }: FooterProps) => {
 
         <div className="details">
           <p className="details_tittle">Timezone</p>
-          <p className="details_content">{geoData?.location.timezone}</p>
+          <p className="details_content">
+            {"UTC " + geoData?.location.timezone}
+          </p>
         </div>
         <hr className="bar" />
 

@@ -7,6 +7,7 @@ interface GeoData {
   ip: string;
   isp: string;
   location: {
+    city: string;
     country: string;
     region: string;
     timezone: string;
@@ -28,9 +29,7 @@ function App() {
         targetIp = ipData.ip;
       }
 
-      const geoResponse = await fetch(`apikey=${targetIp}`);
-
-      if (!geoResponse.ok) throw new Error(`HTTP ${geoResponse.status}`);
+      const geoResponse = await fetch(`/.netlify/functions/geo?ip=${targetIp}`);
       const data: GeoData = await geoResponse.json();
       setGeoData(data);
     } catch (error) {
